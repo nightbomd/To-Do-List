@@ -2,10 +2,95 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+:root {
+    --tint: #FAF5E8;
+    --light: #EAD49A;
+    --primary: #7F6B3C;
+    --deep: #4A3E20;
+}
+
 ul {
     list-style: none;
 }
+
 main {
-    height: 85vh;
+    height: 70vh;
     overflow: hidden;
+
+}
+
+body {
+    background: rgb(245, 244, 235);
+}
+
+#addTaskBtn {
+    background-color: var(--primary) !important;
+    color: white;
+}
+
+#taskInput {
+    background: var(--tint) !important;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+    border: none;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.tasks h5 {
+    background: black;
+    color: white;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.tasks {
+    padding: 0;
+
+}
+.check {
+    background-color: var(--primary) !important;
+    color: white;
+    border: none;
+    border-radius: 50%;
+}
+.task-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.55);
+    border: 0.5px solid rgba(255, 255, 255, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 1px 3px rgba(44, 43, 38, 0.07),
+        0 0.5px 1px rgba(44, 43, 38, 0.04);
+    border-radius: 10px;
+}
+
+.list-item {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.55);
+    border: 0.5px solid rgba(255, 255, 255, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 1px 3px rgba(44, 43, 38, 0.07),
+        0 0.5px 1px rgba(44, 43, 38, 0.04);
+    border-radius: 10px;
+}
+
+#taskInput:focus {
+    background: var(--tint) !important;
+    box-shadow: 0 0 0 0.2rem rgba(127, 107, 60, 0.25);
+}
+
+#clearTaskBtn {
+    background-color: var(--deep) !important;
+    color: white;
 }
