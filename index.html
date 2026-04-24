@@ -19,37 +19,55 @@
     <header class=" bg-dark text-white">
         <h2 class="text-center mb-5 p-5">To-Do-List</h2>
     </header>
-    <main class="container mt-5 rounded  p-4 ">
+    <main class="container-fluid mt-5 rounded  p-4 ">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
+            <div class="col-md-12 col-lg-12">
                 <div class="row">
-                    <div class="col-8">
-    
+                    <div class="col-2">
                         <input type="text" id="taskInput" placeholder="Enter a task">
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                         <button id="addTaskBtn" class="btn w-100">Add Task</button>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="tasks  mt-3 mb-3">
+                    <div id="priority" class="col-1">
+                        <div class="custom-select shadow-sm">
+                            <div class="selected">Priority <img id="arrow" class="img-fluid" src="download.png" alt="Down arrow"></div>
 
-                                <div class="task-wrapper">
-                                    <h5 class=" p-3">My Tasks:</h5>
-                                    <ul id="taskList" class="list-group  p-3 mb-3 w-75 m-auto"></ul>
-                                </div>
+                            <div class="options hidden">
+                                <div class='prority-item'data-value="high">Priority</div>
+                                <div  class='prority-item'data-value="high"><span id="high">High</span></div>
+                                <div  class='prority-item'data-value="medium"><span id="medium">Medium</span></div>
+                                <div  class='prority-item'data-value="low"><span id="low">Low</span></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button id="clearTaskBtn" class="btn  w-100">Clear All Tasks</button>
+                    <div class="row d-flex justify-content-center align-items-start">
+
+                        <div class="col-6">
+                            <div class="tasks mt-3 mb-3">
+                                <div class="task-wrapper">
+                                    <h5 class="sticky-top p-3">My Tasks:</h5>
+                                    <ul id="taskList" class="list-group d-flex flex-column p-3 mb-3 w-75 m-auto">
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-6">
+                            <div class="tasks mt-3 mb-3">
+                                <div class="task-wrapper">
+                                    <h5 class="sticky-top p-3">Finished Tasks:</h5>
+                                    <ul id="finishedTaskList"
+                                        class="list-group d-flex flex-column p-3 mb-3 w-75 m-auto">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
-                        <div class="col-12 mt-5">
-                            <h3>Finished Tasks:</h3>
-                            <ul id="finishedTaskList" class="list-group mt-3 p-3 border border-rounded shadow"></ul>
+                        <div class="col-4 ">
+                            <button id="clearTaskBtn" class="btn col-4  w-100">Clear All Tasks</button>
                         </div>
                     </div>
                 </div>

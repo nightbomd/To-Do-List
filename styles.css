@@ -45,7 +45,7 @@ body {
     box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.tasks h5 {
+ h5 {
     background: black;
     color: white;
     border-top-left-radius: 16px;
@@ -60,19 +60,29 @@ body {
     background-color: var(--primary) !important;
     color: white;
     border: none;
-    border-radius: 50%;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem !important;
 }
-.task-wrapper {
-    max-height: 300px;
+.task-wrapper, #finishedTasksContainer {
+
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.55);
-    border: 0.5px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(204, 196, 196, 0.85);
     border-top: 1px solid rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     box-shadow: 0 1px 3px rgba(44, 43, 38, 0.07),
         0 0.5px 1px rgba(44, 43, 38, 0.04);
     border-radius: 10px;
+    
+}
+.task-wrapper {
+    height: 55vh;
+}
+#taskList, #finishedTaskList {
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
 }
 
 .list-item {
@@ -81,7 +91,7 @@ body {
     max-height: 300px;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.55);
-    border: 0.5px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(204, 196, 196, 0.85);
     border-top: 1px solid rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -98,4 +108,81 @@ body {
 #clearTaskBtn {
     background-color: var(--deep) !important;
     color: white;
+}
+.custom-select {
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.selected {
+    padding: 10px;
+    color: var(--deep);
+    background: white;
+    cursor: pointer;
+    border-radius: 16px;
+}
+#high {
+    background: rgba(201, 29, 135, 0.25);
+    border: 1px solid rgba(209, 78, 78, 0.4);
+    color: #2b0f0f;
+    padding: 6px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-weight: 600;
+}
+#arrow {
+    height: 25px;
+    width: auto;
+}
+#medium {
+    background: rgba(255, 198, 9, 0.2);
+    border: 1px solid rgba(200, 200, 0, 0.4);
+    color: #3a3a00;
+    padding: 6px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-weight: 600;
+}
+#low {
+    background: rgba(0, 128, 0, 0.2);
+    border: 1px solid rgba(0, 128, 0, 0.4);
+    color: #0f2b0f;
+    padding: 6px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-weight: 600;
+}
+.options {
+    background: white;
+    border-top: 1px solid var(--light);
+      position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 1000;
+}
+
+.options div {
+    padding: 10px;
+    color: var(--deep);
+}
+
+.options div:hover {
+    background: var(--tint);
+}
+
+.hidden {
+    display: none;
 }

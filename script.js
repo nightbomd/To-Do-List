@@ -1,5 +1,7 @@
 let tasks = []; // nah ts is emptpy fr fr
 let finishedTasks = [];
+let currentPriority = "low";
+
 document.getElementById("addTaskBtn").addEventListener("click", () => {
     const taskInput = document.getElementById("taskInput");
     const taskList = document.getElementById('taskList');
@@ -47,3 +49,18 @@ function removeTask(index) {
     displayTasks();
 }                                                  
 
+const select = document.querySelector(".custom-select");
+const selected = select.querySelector(".selected");
+const options = select.querySelector(".options");
+
+select.addEventListener("click", () => {
+    options.classList.toggle("hidden");
+});
+
+options.querySelectorAll("div").forEach(option => {
+    option.addEventListener("click", () => {
+        selected.textContent = option.textContent;
+        selected.dataset.value = option.dataset.value;
+        options.classList.add("hidden");
+    });
+});
