@@ -149,6 +149,7 @@ h5 {
     align-items: center;
     z-index: 1000;
     border: 1px solid var(--light);
+    
 }
 
 #arrow {
@@ -162,8 +163,13 @@ h5 {
     border-radius: 16px;
     width: 100%;
 }
-.high {
-    background: rgba(201, 29, 135, 0.25);
+.urgent {
+    background: rgba(167, 5, 200, 0.25);
+    border: 1px solid rgba(192, 26, 183, 0.4);
+    color: #6f0882;
+}
+ .high {
+        background: rgba(201, 29, 135, 0.25);
     border: 1px solid rgba(209, 78, 78, 0.4);
     color: #6d1919;
 }
@@ -209,7 +215,7 @@ h5 {
 .hidden {
     display: none;
 }
-.high, .medium, .low {
+.high, .medium, .low, .urgent {
         padding: 2px 4px;
     border-radius: 2px;
     backdrop-filter: blur(8px);
