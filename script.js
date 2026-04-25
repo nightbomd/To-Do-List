@@ -22,6 +22,7 @@ userGreeting.innerHTML = `Welcome to your To-Do list,<strong> ${username}!</stro
 function updateUi() {
     const taskCount = document.getElementById("taskCount");
     taskCount.textContent = `You have ${tasks.length} tasks`;
+    document.getElementById("finishedTaskCount").textContent = `You have ${finishedTasks.length} finished tasks`;
     if (tasks.length === 0 && !taskList.querySelector('.muted-text')) {
         const emptyMessage = document.createElement("p");
         emptyMessage.classList.add("text-muted", "m-auto", "muted-text");
@@ -34,7 +35,7 @@ function updateUi() {
         emptyMessage.textContent = "You've Completed absolutely NO TASKS!!!!";
         finishedTasksList.appendChild(emptyMessage);
     }
-
+    updateRing();
 }
 function addTask() {
     const taskInput = document.getElementById("taskInput");
@@ -69,6 +70,16 @@ document.getElementById("clearTaskBtn").addEventListener("click", () => {
     const taskList = document.getElementById('taskList');
     tasks = [];
     taskList.innerHTML = '';
+    updateUi();
+});
+document.getElementById("clearTaskBtnFinished").addEventListener("click", () => {
+    if (finishedTasks.length === 0) {
+        alert("you dont even have any finished tasks you can't do that yet")
+    }
+    const finishedTasksList = document.getElementById('finishedTaskList');
+    finishedTasks = [];
+    finishedTasksList.innerHTML = '';
+    updateUi();
 });
 
 function displayTasks() {
@@ -132,4 +143,29 @@ options.querySelectorAll("div").forEach(option => {
         options.classList.add("hidden");
     });
 });
+document.getElementById("moonToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+})
+function updateRing() {
+    const ring = document.querySelector('.progress-ring');
+    const label = document.querySelector('.progress-label');
+    const total = tasks.length + finishedTasks.length;
+    const percent = total === 0 ? 0 : (finishedTasks.length / total) * 100;
+
+    let current = parseFloat(ring.style.getPropertyValue('--progress')) || 0;
+
+    const animate = () => {
+        if (Math.abs(current - percent) < 0.5) {  // ← less than, not greater than
+            current = percent;
+            ring.style.setProperty('--progress', current);
+            return;
+        }
+        current += (percent - current) * 0.1;
+        ring.style.setProperty('--progress', current);
+        requestAnimationFrame(animate);
+    };
+
+    animate();
+    label.textContent = finishedTasks.length;
+}
 updateUi();

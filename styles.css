@@ -5,9 +5,13 @@
 
 :root {
     --tint: #FAF5E8;
-    --light: #EAD49A;
+    --light: #978041;
     --primary: #7F6B3C;
     --deep: #4A3E20;
+    --text: #2a2723;
+    --text-white: #FAF5E8;
+    --black-bg: #2a2723;
+    --white-bg: #faf8f5;
 }
 
 ul {
@@ -24,21 +28,31 @@ button {
     padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    border: 1px solid var(--deep) !important;
+    background: var(--primary) !important;
+    color: var(--text-white) !important;
 }
+
 button:hover {
     opacity: 0.8;
 }
 body {
     background: rgb(245, 244, 235);
 }
-
-button {
-    background-color: var(--primary) !important;
-    color: var(--tint) !important;
-    border: 1px solid var(--deep) !important;
-    transition: 0.15s ease;
+body.dark {
+     --tint: #45403a;
+    --light: #4a3e20;
+    --primary: #EAD49A;
+    --deep: #FAF5E8;
+    --text: #FAF5E8;
+    --text-white: #2a2723;
+    --black-bg: #faf8f5;
+    --white-bg: #2a2723;
+    background: rgb(42, 40, 40);
 }
-
+.somewhatofanavbar {
+    color: var(--text);
+}
 #taskInput {
     background: var(--tint) !important;
     outline: none;
@@ -47,7 +61,7 @@ button {
     width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    color: var(--deep);
+    color: var(--text);
     box-shadow:                        /* ← was missing entirely */
         0 1px 2px rgba(30, 28, 26, 0.04),
         0 4px 12px rgba(30, 28, 26, 0.07),
@@ -60,8 +74,8 @@ button {
     box-shadow: 0 0 0 0.2rem rgba(127, 107, 60, 0.25);
 }
 h5 {
-    background: #2a2723;
-    color: #e8e0d4;
+    background: var(--black-bg);
+    color: var(--text-white);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -93,7 +107,7 @@ h5 {
 }
 .task-wrapper {
     height: 55vh;
-    background: #faf8f5;
+    background: var(--white-bg);
     border-radius: 14px;
     overflow-y: auto;      /* ← was "hidden", change to this */
     box-shadow:
@@ -136,11 +150,11 @@ h5 {
 
 #clearTaskBtn {
     background-color: var(--primary) !important;
-    color: var(--tint)
+    color: var(--text-white) !important;
 }
 .custom-select {
     background: var(--tint);
-    color: var(--light);
+    color: var(--text);
     border-radius: 8px;
     position: relative;
     display: flex;
@@ -157,8 +171,8 @@ h5 {
 }
 .selected {
     padding: 10px;
-    color: var(--deep);
-    background: var(--tint);
+    color: var(--text);
+    background: var(--tint) !important;
     cursor: pointer;
     border-radius: 16px;
     width: 100%;
@@ -192,24 +206,26 @@ h5 {
     color: #277b27;
 }
 .options {
-    background: white;
+    background: var(--tint) !important;
     border-top: 1px solid var(--tint);
       position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: white;
     z-index: 1000;
 }
 
 .options div {
     padding: 10px;
-    color: var(--deep);
+    color: var(--text);
     background: white;
 }
-
+.priority-item {
+    background: var(--white-bg) !important;
+    border: 1px solid var(--tint);
+}
 .options div:hover {
-    background: var(--tint);
+    opacity: 0.8;
 }
 
 .hidden {
@@ -222,4 +238,60 @@ h5 {
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     font-weight: 600;
+}
+#settingsToggle, #moonToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50%;
+    background: var(--primary);
+    border: none !important;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;  /* ← add this */
+    line-height: 1;   /* ← and this */
+   
+    transition: background 0.2s, transform 0.15s;
+    background: transparent !important;
+}
+#moonToggle {
+    right: 70px !important;
+}
+#settingsToggle img, #moonToggle img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary) 0% calc(var(--progress) * 1%), #e0d8cc calc(var(--progress) * 1%) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;  /* ← add this */
+
+}
+
+.progress-ring::before {
+    content: '';
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--white-bg);  /* ← was --card-bg, doesn't exist */
+    position: absolute;           /* ← add this */
+}
+
+.progress-label {
+    position: absolute;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--deep);
+    z-index: 1;  /* ← sits above the ::before circle */
 }
