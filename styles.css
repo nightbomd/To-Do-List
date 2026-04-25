@@ -268,8 +268,8 @@ h5 {
     object-fit: contain;
 }
 .progress-ring {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     background: conic-gradient(var(--primary) 0% calc(var(--progress) * 1%), #e0d8cc calc(var(--progress) * 1%) 100%);
     display: flex;
@@ -281,8 +281,8 @@ h5 {
 
 .progress-ring::before {
     content: '';
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     background: var(--white-bg);  /* ← was --card-bg, doesn't exist */
     position: absolute;           /* ← add this */
@@ -290,7 +290,7 @@ h5 {
 
 .progress-label {
     position: absolute;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--deep);
     z-index: 1;  /* ← sits above the ::before circle */

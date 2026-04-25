@@ -1,5 +1,16 @@
-let tasks = []; // nah ts is emptpy fr fr
-let finishedTasks = [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let finishedTasks = JSON.parse(localStorage.getItem('finishedTasks')) || [];
+let username = localStorage.getItem('username');
+
+if (!username) {
+    username = window.prompt("Enter your name:");
+    localStorage.setItem('username', username);
+}
+
+function save() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
+}
 let currentPriority = "low";
 const taskList = document.getElementById('taskList');
 const finishedTasksList = document.getElementById('finishedTaskList');
@@ -8,7 +19,7 @@ const finishedTasksList = document.getElementById('finishedTaskList');
 const today = new Date().toLocaleDateString();
 const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date().getDay()];
 document.getElementById("date").innerHTML = `${weekday}, <strong>${today}</strong>`;
-const username = window.prompt("Enter your name:");
+
 const userGreeting = document.getElementById("userGreeting");
 
 if (username === null || username.trim() === "") {
@@ -20,6 +31,7 @@ if (username === null || username.trim() === "") {
 userGreeting.innerHTML = `Welcome to your To-Do list,<strong> ${username}!</strong>`;
 
 function updateUi() {
+    save();
     const taskCount = document.getElementById("taskCount");
     taskCount.textContent = `You have ${tasks.length} tasks`;
     document.getElementById("finishedTaskCount").textContent = `You have ${finishedTasks.length} finished tasks`;
@@ -46,10 +58,10 @@ function addTask() {
             // object btw. You can push an object into an array just so you know
             text: taskInput.value,
             createdAt: new Date().toLocaleDateString(),
-            priority: currentPriority   
+            priority: currentPriority
         });
         displayTasks();
-        taskInput.value = '';   
+        taskInput.value = '';
     }
     else {
         alert('you gotta add something my guy')
@@ -168,4 +180,6 @@ function updateRing() {
     animate();
     label.textContent = finishedTasks.length;
 }
+displayTasks();
+displayFinishedTasks();  
 updateUi();
