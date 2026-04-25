@@ -16,40 +16,62 @@ ul {
 
 main {
     height: 70vh;
-    overflow: hidden;
+    overflow: visible;
 
 }
 button {
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 0.8rem !important;
+    border-radius: 8px;
     transition: background-color 0.3s ease;
+}
+button:hover {
+    opacity: 0.8;
 }
 body {
     background: rgb(245, 244, 235);
 }
 
-#addTaskBtn {
+button {
     background-color: var(--primary) !important;
-    color: white;
+    color: var(--tint) !important;
+    border: 1px solid var(--deep) !important;
+    transition: 0.15s ease;
 }
 
 #taskInput {
     background: var(--tint) !important;
     outline: none;
     transition: box-shadow 0.3s ease;
-    border: none;
+    border: 1px solid var(--light);   /* ← needs width + style */
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
+    color: var(--deep);
+    box-shadow:                        /* ← was missing entirely */
+        0 1px 2px rgba(30, 28, 26, 0.04),
+        0 4px 12px rgba(30, 28, 26, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
- h5 {
-    background: black;
-    color: white;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+#taskInput:focus {
+    background: var(--tint) !important;
+    border: 1px solid var(--primary); /* ← highlight border on focus */
+    box-shadow: 0 0 0 0.2rem rgba(127, 107, 60, 0.25);
+}
+h5 {
+    background: #2a2723;
+    color: #e8e0d4;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+     position: sticky;
+    top: 0;
+    z-index: 1; 
 }
 
 .tasks {
@@ -57,39 +79,46 @@ body {
 
 }
 .check {
-    background-color: var(--primary) !important;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.8rem !important;
+    width: 20px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: white !important;
 }
-.task-wrapper, #finishedTasksContainer {
-
-    overflow-y: auto;
-    background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(204, 196, 196, 0.85);
-    border-top: 1px solid rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: 0 1px 3px rgba(44, 43, 38, 0.07),
-        0 0.5px 1px rgba(44, 43, 38, 0.04);
-    border-radius: 10px;
-    
+.check:hover {
+    background: var(--light) !important;
+    border: 2px solid var(--deep) !important;
 }
 .task-wrapper {
     height: 55vh;
+    background: #faf8f5;
+    border-radius: 14px;
+    overflow-y: auto;      /* ← was "hidden", change to this */
+    box-shadow:
+        0 1px 2px rgba(30, 28, 26, 0.04),
+        0 4px 12px rgba(30, 28, 26, 0.07),
+        0 8px 24px rgba(30, 28, 26, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(200, 190, 175, 0.5);
+}
+#calendar-svg {
+    height: 25px;
+    width: auto;
 }
 #taskList, #finishedTaskList {
     padding: 0;
     margin: 0;
     gap: 0.5rem;
+    max-height: calc(55vh - 48px);  /* card height minus the h5 header */
 }
 
 .list-item {
     border-radius: 20px;
     padding: 0.5rem 1rem;
     max-height: 300px;
-    overflow-y: auto;
+
     background: rgba(255, 255, 255, 0.55);
     border: 1px solid rgba(204, 196, 196, 0.85);
     border-top: 1px solid rgba(255, 255, 255, 0.95);
@@ -106,66 +135,59 @@ body {
 }
 
 #clearTaskBtn {
-    background-color: var(--deep) !important;
-    color: white;
+    background-color: var(--primary) !important;
+    color: var(--tint)
 }
 .custom-select {
-    background: white;
+    background: var(--tint);
+    color: var(--light);
     border-radius: 8px;
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    align-items: center;
+    z-index: 1000;
+    border: 1px solid var(--light);
 }
 
+#arrow {
+    margin: 10px;
+}
 .selected {
     padding: 10px;
     color: var(--deep);
-    background: white;
+    background: var(--tint);
     cursor: pointer;
     border-radius: 16px;
+    width: 100%;
 }
-#high {
+.high {
     background: rgba(201, 29, 135, 0.25);
     border: 1px solid rgba(209, 78, 78, 0.4);
-    color: #2b0f0f;
-    padding: 6px 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    font-weight: 600;
+    color: #6d1919;
 }
 #arrow {
     height: 25px;
     width: auto;
 }
-#medium {
+.text-muted {
+    color: var(--primary) !important;
+}
+.medium {
     background: rgba(255, 198, 9, 0.2);
     border: 1px solid rgba(200, 200, 0, 0.4);
-    color: #3a3a00;
-    padding: 6px 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    font-weight: 600;
+    color: #838317;
+  
 }
-#low {
+.low {
     background: rgba(0, 128, 0, 0.2);
     border: 1px solid rgba(0, 128, 0, 0.4);
-    color: #0f2b0f;
-    padding: 6px 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    font-weight: 600;
+    color: #277b27;
 }
 .options {
     background: white;
-    border-top: 1px solid var(--light);
+    border-top: 1px solid var(--tint);
       position: absolute;
     top: 100%;
     left: 0;
@@ -177,6 +199,7 @@ body {
 .options div {
     padding: 10px;
     color: var(--deep);
+    background: white;
 }
 
 .options div:hover {
@@ -185,4 +208,12 @@ body {
 
 .hidden {
     display: none;
+}
+.high, .medium, .low {
+        padding: 2px 4px;
+    border-radius: 2px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-weight: 600;
 }
