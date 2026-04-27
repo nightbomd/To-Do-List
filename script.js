@@ -1,12 +1,14 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || []; // sets the tasks to whatever is in the storage OR an empty array (the defeault)
 let finishedTasks = JSON.parse(localStorage.getItem('finishedTasks')) || [];
 let username = localStorage.getItem('username');
+
+// you have to do json.parse to get it to a string value otherwise you get something like [object Object]
 
 if (!username) {
     username = window.prompt("Enter your name:");
     localStorage.setItem('username', username);
 }
-
+// saves it in the storage
 function save() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
@@ -16,8 +18,8 @@ const taskList = document.getElementById('taskList');
 const finishedTasksList = document.getElementById('finishedTaskList');
 
 
-const today = new Date().toLocaleDateString();
-const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date().getDay()];
+const today = new Date().toLocaleDateString(); // new Date is an object that returns the date in a valeu form, .toLocaleDateString() returns day/month/year
+const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date().getDay()]; // .getDay() returns an index for each day, so you have to access it with that way
 document.getElementById("date").innerHTML = `${weekday}, <strong>${today}</strong>`;
 
 const userGreeting = document.getElementById("userGreeting");
@@ -30,7 +32,7 @@ if (username === null || username.trim() === "") {
 
 userGreeting.innerHTML = `Welcome to your To-Do list,<strong> ${username}!</strong>`;
 
-function updateUi() {
+function updateUi() { // this function gets called when almost anything on the user interface gets changed
     save();
     const taskCount = document.getElementById("taskCount");
     taskCount.textContent = `You have ${tasks.length} tasks`;
@@ -71,7 +73,7 @@ function addTask() {
 document.getElementById("addTaskBtn").addEventListener("click", addTask);
 
 document.getElementById("taskInput").addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter") { // "event" is an object. event.key represents the key on the keyboard that was pressed
         addTask();
     }
 });
@@ -111,8 +113,9 @@ function displayTasks() {
         </div>`;
 
         taskList.appendChild(li);
+        // for some reason, you have to add a new tooltip for each task. Not sure why but chat GPT said it wouldn't work otherwise -- Though im pretty sure it's becuase your creating multiple elemtns,a nd the tooltip has be to registered in the JSS to being with
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
-            new bootstrap.Tooltip(el);
+            new bootstrap.Tooltip(el); // class
         });
     });
 }
@@ -143,43 +146,43 @@ const select = document.querySelector(".custom-select");
 const selected = select.querySelector(".selected");
 const options = select.querySelector(".options");
 
+// this is a custom select. The only reason why this exists is becuase I wanted to style it.
 select.addEventListener("click", () => {
-    options.classList.toggle("hidden");
+    options.classList.toggle("hidden"); // the hidden class is what reveals the options. Technically, they're always there, but removing the class creates the illusion of the drop-down
 });
 
 options.querySelectorAll("div").forEach(option => {
     option.addEventListener("click", () => {
         selected.textContent = option.textContent;
-        selected.dataset.value = option.dataset.value;
+        selected.dataset.value = option.dataset.value; // dataset.value takes the value from the html
         currentPriority = option.dataset.value;
-        options.classList.add("hidden");
+        options.classList.add("hidden"); // add the class when an option is picked again to hide the options making it go up
     });
 });
 document.getElementById("moonToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark"); // by toggling a "dark" class on the body, you can change the theme. This is easily implented with css variavles (see the css)
 })
 function updateRing() {
     const ring = document.querySelector('.progress-ring');
     const label = document.querySelector('.progress-label');
     const total = tasks.length + finishedTasks.length;
-    const percent = total === 0 ? 0 : (finishedTasks.length / total) * 100;
+    const percent = total === 0 ? 0 : (finishedTasks.length / total) * 100; // defeault is 0, otherwise the percentage from finished vs total
 
-    let current = parseFloat(ring.style.getPropertyValue('--progress')) || 0;
+    let current = parseFloat(ring.style.getPropertyValue('--progress')) || 0; // we're using getPropertyValue becuase the --progress variable is in the css (again see css)
 
-    const animate = () => {
-        if (Math.abs(current - percent) < 0.5) {  // ← less than, not greater than
+    const animate = () => { // what this is doing in simple terms is it's slowly moving the progress bar. But the number will infinitlety produce, so you have to set a restriction
+        if (Math.abs(current - percent) < 0.5) {  
             current = percent;
             ring.style.setProperty('--progress', current);
             return;
         }
         current += (percent - current) * 0.1;
         ring.style.setProperty('--progress', current);
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animate); // you need to do this anytime you make a custom animation
     };
 
     animate();
     label.textContent = finishedTasks.length;
 }
-displayTasks();
-displayFinishedTasks();  
+
 updateUi();
