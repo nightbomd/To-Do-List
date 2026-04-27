@@ -170,12 +170,7 @@ function updateRing() {
 
     let current = parseFloat(ring.style.getPropertyValue('--progress')) || 0; // we're using getPropertyValue becuase the --progress variable is in the css (again see css)
 
-    const animate = () => { // what this is doing in simple terms is it's slowly moving the progress bar. But the number will infinitlety produce, so you have to set a restriction
-        if (Math.abs(current - percent) < 0.5) {  
-            current = percent;
-            ring.style.setProperty('--progress', current);
-            return;
-        }
+    const animate = () => { // what this is doing in simple terms is it's slowly moving the progress bar. 
         current += (percent - current) * 0.1;
         ring.style.setProperty('--progress', current);
         requestAnimationFrame(animate); // you need to do this anytime you make a custom animation
