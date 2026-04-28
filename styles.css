@@ -127,7 +127,13 @@ h5 {
     gap: 0.5rem;
     max-height: calc(55vh - 48px);  /* card height minus the h5 header */
 }
-
+#svg {
+    height: 80px;
+    width: auto;
+}
+#svg.dark {
+    background: url("moon.svg") no-repeat center center;
+}
 .list-item {
     border-radius: 20px;
     padding: 0.5rem 1rem;

@@ -160,8 +160,13 @@ options.querySelectorAll("div").forEach(option => {
     });
 });
 document.getElementById("moonToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark"); // by toggling a "dark" class on the body, you can change the theme. This is easily implented with css variavles (see the css)
-})
+    document.body.classList.toggle("dark");
+
+    const img = document.getElementById("svg");
+    img.src = document.body.classList.contains("dark") 
+        ? "moonReal.svg" 
+        : "sun.svg";
+});
 function updateRing() {
     const ring = document.querySelector('.progress-ring');
     const label = document.querySelector('.progress-label');
@@ -179,5 +184,6 @@ function updateRing() {
     animate();
     label.textContent = finishedTasks.length;
 }
+
 
 updateUi();
