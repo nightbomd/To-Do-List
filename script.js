@@ -163,9 +163,12 @@ document.getElementById("moonToggle").addEventListener("click", () => {
     document.body.classList.toggle("dark");
 
     const img = document.getElementById("svg");
-    img.src = document.body.classList.contains("dark") 
-        ? "moonReal.svg" 
-        : "sun.svg";
+
+    if (document.body.classList.contains("dark")) {
+        img.src = "moonReal.png";
+    } else {
+        img.src = "download.png"; 
+    }
 });
 function updateRing() {
     const ring = document.querySelector('.progress-ring');
