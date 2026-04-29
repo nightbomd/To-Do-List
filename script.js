@@ -175,7 +175,7 @@ document.getElementById("moonToggle").addEventListener("click", () => {
 document.getElementById("settingsToggle").addEventListener("click", () => {
     const overLay = document.getElementById("settingsOverlay")
     const modal = document.getElementById("settingsModal")
-
+   
     if (overLay.classList.contains("hidden") && modal.classList.contains("hidden")) {
         overLay.classList.remove("hidden");
         modal.classList.remove("hidden");
