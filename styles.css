@@ -12,6 +12,7 @@
     --text-white: #FAF5E8;
     --black-bg: #2a2723;
     --white-bg: #faf8f5;
+    --secondary: #4A3E20;
 }
 
 ul {
@@ -48,12 +49,13 @@ body.dark { /* when this is applied, the variables are inversed, and becuase we'
     --text-white: #2a2723;
     --black-bg: #faf8f5;
     --white-bg: #2a2723;
+    --secondary: #e9bbfc;
     background: rgb(42, 40, 40);
 }
 .somewhatofanavbar {
     color: var(--text);
 }
-#taskInput {
+.input-class {
     background: var(--tint) !important;
     outline: none;
     transition: box-shadow 0.3s ease;
@@ -68,7 +70,7 @@ body.dark { /* when this is applied, the variables are inversed, and becuase we'
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-#taskInput:focus {
+.input-class:focus {
     background: var(--tint) !important;
     border: 1px solid var(--primary);
     box-shadow: 0 0 0 0.2rem rgba(127, 107, 60, 0.25);
@@ -86,6 +88,9 @@ h5 {
      position: sticky;
     top: 0;
     z-index: 1; 
+}
+h2, label{
+    color: var(--text);
 }
 
 .tasks {
@@ -155,7 +160,7 @@ h5 {
 }
 
 #clearTaskBtn {
-    background-color: var(--primary) !important;
+    background-color: var(--secondary) !important;
     color: var(--text-white) !important;
 }
 .custom-select {
@@ -255,7 +260,7 @@ h5 {
     background: var(--primary);
     border: none !important;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 10132975397593795737579375375;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,4 +305,36 @@ h5 {
     font-weight: 600;
     color: var(--deep);
     z-index: 1; 
+}
+.overlay {
+    position: fixed;
+    inset: 0; 
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10043947;
+}
+
+.settings-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 10132975397593795737579375375; 
+    height: 320px;
+    width: auto;
+    background: var(--tint);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--primary);
+}
+#closeSettingsBtn {
+    background: var(--secondary) !important;
+}
+#searchIcon {
+    height: 20px;
+    width: auto;
+    margin: 1rem;
+    position: relative;
+}
+#usernameInput {
+    border: 2px solid var(--primary);
 }
